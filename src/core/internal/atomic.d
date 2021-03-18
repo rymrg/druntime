@@ -79,6 +79,10 @@ version (LDC)
     {
         return atomicCompareExchangeNoResult!(false, succ, fail, T)(dest, compare, value);
     }
+    bool atomicCompareExchangeWeakNoResult(MemoryOrder succ = MemoryOrder.seq, MemoryOrder fail = MemoryOrder.seq, T)(T* dest, const T compare, T value) pure nothrow @nogc @trusted
+    {
+        return atomicCompareExchangeNoResult!(true, succ, fail, T)(dest, compare, value);
+    }
 
     void atomicFence(MemoryOrder order = MemoryOrder.seq)() pure nothrow @nogc @trusted
     {
